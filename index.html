@@ -3,199 +3,285 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BiteDash | Artisanal Kitchen & Express Delivery</title>
     
-    <title>BiteDash | Artisanal Pizza & Italian Sides</title>
-
-    <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "wcy104z22u");
-</script>
+    <meta name="description" content="Explore BiteDash's curated catalog of hand-tossed pizzas, organic greens, and chef-special burgers. Fresh ingredients, zero-contact delivery.">
+    <meta name="keywords" content="single page restaurant, food catalog, order pizza online, gourmet burger delivery">
     
-    <meta name="description" content="Order the best artisanal pizzas and fresh sides in town. Fast delivery, organic ingredients, and hand-tossed crusts.">
-    <meta name="keywords" content="pizza delivery, gourmet pizza, order food online, Italian food">
-    
-    <meta property="og:title" content="BiteDash | Gourmet Pizza Delivery">
-    <meta property="og:description" content="Freshly baked pizzas delivered to your door.">
-    <meta property="og:type" content="website">
-
     <script type="application/ld+json">
     {
       "@context": "https://schema.org/",
-      "@type": "Menu",
-      "name": "BiteDash Menu",
-      "mainEntityOfPage": "https://yourwebsite.com",
-      "hasMenuItem": [
-        { "@type": "MenuItem", "name": "Pepperoni Feast", "offers": { "@type": "Offer", "price": "12.00", "priceCurrency": "USD" } },
-        { "@type": "MenuItem", "name": "Garden Fresh", "offers": { "@type": "Offer", "price": "10.00", "priceCurrency": "USD" } }
-      ]
+      "@type": "FoodEstablishment",
+      "name": "BiteDash",
+      "hasMenu": {
+        "@type": "Menu",
+        "name": "Spring 2026 Menu",
+        "hasMenuSection": [
+          { "@type": "MenuSection", "name": "Pizzas" },
+          { "@type": "MenuSection", "name": "Sides" }
+        ]
+      }
     }
     </script>
 
     <style>
         :root {
             --primary: #ff4757;
-            --dark: #2f3542;
-            --gray: #747d8c;
-            --bg: #f7f1e3;
+            --secondary: #2ed573;
+            --dark: #1e272e;
+            --glass: rgba(255, 255, 255, 0.9);
+            --shadow: 0 8px 32px rgba(0,0,0,0.1);
         }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; }
 
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: var(--bg);
+            font-family: 'Inter', -apple-system, sans-serif;
             margin: 0;
-            padding: 20px;
+            background: #fdfaf6;
             color: var(--dark);
+            display: flex;
         }
 
-        header {
-            text-align: center;
-            padding: 40px 0;
-        }
-
-        /* Cart Floating Status */
-        .cart-status {
+        /* --- Navigation --- */
+        nav {
             position: fixed;
-            top: 20px;
-            right: 20px;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 80px;
             background: var(--dark);
-            color: white;
-            padding: 15px 25px;
-            border-radius: 50px;
-            font-weight: bold;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 0;
+            z-index: 100;
         }
 
-        /* Responsive Grid */
-        .menu-grid {
+        nav a { color: white; margin: 20px 0; text-decoration: none; font-size: 1.2rem; }
+
+        /* --- Main Content --- */
+        main {
+            margin-left: 80px;
+            margin-right: 320px;
+            padding: 40px;
+            width: 100%;
+        }
+
+        header h1 { font-size: 3rem; margin-bottom: 10px; }
+        .tagline { color: var(--primary); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- Catalog Section --- */
+        .catalog-section { margin-top: 60px; }
+        .section-title { border-left: 5px solid var(--primary); padding-left: 15px; margin-bottom: 30px; }
+
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 25px;
-            max-width: 1100px;
-            margin: 0 auto;
         }
 
-        .product-card {
+        .item-card {
             background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: var(--shadow);
             transition: transform 0.3s ease;
             display: flex;
             flex-direction: column;
         }
 
-        .product-card:hover {
-            transform: translateY(-5px);
+        .item-card:hover { transform: translateY(-10px); }
+
+        .item-img {
+            width: 100%;
+            height: 180px;
+            background: #eee;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
         }
 
-        .product-info {
-            padding: 20px;
-            flex-grow: 1;
+        .item-card h3 { margin: 10px 0; }
+        .item-card p { color: #666; font-size: 0.9rem; line-height: 1.5; flex-grow: 1; }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
         }
 
-        .product-info h2 {
-            margin: 0 0 10px 0;
-            font-size: 1.4rem;
-        }
-
-        .product-info p {
-            font-size: 0.9rem;
-            color: var(--gray);
-            line-height: 1.4;
-        }
-
-        .price {
-            font-size: 1.25rem;
-            font-weight: bold;
-            color: var(--primary);
-            margin: 15px 0;
-        }
+        .price { font-weight: 800; font-size: 1.2rem; }
 
         .btn-add {
-            background: var(--primary);
+            background: var(--dark);
             color: white;
             border: none;
-            width: 100%;
-            padding: 12px;
-            font-size: 1rem;
-            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 10px;
             cursor: pointer;
-            border-radius: 0 0 15px 15px; /* Aligns with card bottom */
-            transition: opacity 0.2s;
+            transition: 0.2s;
         }
 
-        .btn-add:hover {
-            opacity: 0.9;
+        .btn-add:hover { background: var(--primary); }
+
+        /* --- Sidebar Cart --- */
+        .cart-sidebar {
+            position: fixed;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 320px;
+            background: white;
+            border-left: 1px solid #eee;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
         }
 
-        footer {
-            text-align: center;
-            margin-top: 50px;
-            color: var(--gray);
+        .cart-items { flex-grow: 1; overflow-y: auto; margin-top: 20px; }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #f4f4f4;
+        }
+
+        .checkout-box {
+            border-top: 2px solid var(--dark);
+            padding-top: 20px;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .btn-checkout {
+            width: 100%;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 900px) {
+            nav { width: 100%; height: 60px; flex-direction: row; justify-content: space-around; bottom: auto; }
+            main { margin: 60px 0 0 0; padding: 20px; margin-right: 0; }
+            .cart-sidebar { display: none; } /* On mobile, you'd use a toggle */
         }
     </style>
 </head>
 <body>
 
-    <div class="cart-status">
-        🛒 Cart: <span id="cart-count">0</span> items
-    </div>
+    <nav>
+        <a href="#home">🏠</a>
+        <a href="#pizzas">🍕</a>
+        <a href="#sides">🍟</a>
+        <a href="#contact">📞</a>
+    </nav>
 
-    <header>
-        <h1>BiteDash Gourmet</h1>
-        <p>Hand-crafted meals delivered in under 30 minutes.</p>
-    </header>
+    <main id="home">
+        <header>
+            <span class="tagline">Now Delivering to Your Door</span>
+            <h1>BiteDash Kitchen</h1>
+            <p>Experience artisanal flavors curated by world-class chefs.</p>
+        </header>
 
-    <main class="menu-grid">
-        <article class="product-card">
-            <div class="product-info">
-                <h2>🍕 Pepperoni Feast</h2>
-                <p>Triple-layered pepperoni with hand-pulled mozzarella and spicy tomato base.</p>
-                <div class="price">$12.00</div>
+        <section class="catalog-section" id="pizzas">
+            <h2 class="section-title">Signature Pizzas</h2>
+            <div class="grid">
+                <article class="item-card">
+                    <div class="item-img">🍕</div>
+                    <h3>Truffle Mushroom</h3>
+                    <p>Earthy wild mushrooms, white truffle oil, and creamy ricotta on a 48-hour fermented crust.</p>
+                    <div class="card-footer">
+                        <span class="price">$16.50</span>
+                        <button class="btn-add" onclick="addToCart('Truffle Pizza', 16.50)">+ Add</button>
+                    </div>
+                </article>
+
+                <article class="item-card">
+                    <div class="item-img">🔥</div>
+                    <h3>Spicy Diablo</h3>
+                    <p>Calabrian chiles, hot honey, and spicy salumi for those who love a serious kick.</p>
+                    <div class="card-footer">
+                        <span class="price">$14.00</span>
+                        <button class="btn-add" onclick="addToCart('Spicy Diablo', 14.00)">+ Add</button>
+                    </div>
+                </article>
             </div>
-            <button class="btn-add" onclick="addToCart('Pepperoni Feast', 12.00)">Add to Cart</button>
-        </article>
+        </section>
 
-        <article class="product-card">
-            <div class="product-info">
-                <h2>🥗 Garden Fresh</h2>
-                <p>Organic kale, cherry tomatoes, cucumbers, and a zesty lemon vinaigrette.</p>
-                <div class="price">$10.00</div>
+        <section class="catalog-section" id="sides">
+            <h2 class="section-title">Essential Sides</h2>
+            <div class="grid">
+                <article class="item-card">
+                    <div class="item-img">🍟</div>
+                    <h3>Truffle Fries</h3>
+                    <p>Double-fried russet potatoes tossed in parmesan, parsley, and sea salt.</p>
+                    <div class="card-footer">
+                        <span class="price">$7.00</span>
+                        <button class="btn-add" onclick="addToCart('Truffle Fries', 7.00)">+ Add</button>
+                    </div>
+                </article>
             </div>
-            <button class="btn-add" onclick="addToCart('Garden Fresh', 10.00)">Add to Cart</button>
-        </article>
-
-        <article class="product-card">
-            <div class="product-info">
-                <h2>🍔 The Brisket Burger</h2>
-                <p>Slow-smoked brisket patty with caramelized onions and truffle aioli.</p>
-                <div class="price">$15.00</div>
-            </div>
-            <button class="btn-add" onclick="addToCart('Brisket Burger', 15.00)">Add to Cart</button>
-        </article>
+        </section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 BiteDash Food Co. | 123 Flavor Street, Foodie City</p>
-    </footer>
+    <aside class="cart-sidebar">
+        <h2>Your Order</h2>
+        <div class="cart-items" id="cart-list">
+            <p style="color: #999;">Your cart is empty...</p>
+        </div>
+        <div class="checkout-box">
+            <div class="total-row">
+                <span>Total:</span>
+                <span id="cart-total">$0.00</span>
+            </div>
+            <button class="btn-checkout" onclick="alert('Proceeding to Payment...')">Checkout Now</button>
+        </div>
+    </aside>
 
     <script>
         let cart = [];
-        const cartCountDisplay = document.getElementById('cart-count');
 
         function addToCart(name, price) {
             cart.push({ name, price });
-            cartCountDisplay.innerText = cart.length;
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const list = document.getElementById('cart-list');
+            const totalDisplay = document.getElementById('cart-total');
             
-            // Visual feedback
-            console.log(`Added ${name} to cart. Total items: ${cart.length}`);
-            
-            // Basic animation feedback (Alert is simple, but a toast is better)
-            alert(`${name} added to cart!`);
+            if (cart.length === 0) {
+                list.innerHTML = '<p style="color: #999;">Your cart is empty...</p>';
+                totalDisplay.innerText = '$0.00';
+                return;
+            }
+
+            list.innerHTML = cart.map((item, index) => `
+                <div class="cart-item">
+                    <span>${item.name}</span>
+                    <span>$${item.price.toFixed(2)}</span>
+                </div>
+            `).join('');
+
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            totalDisplay.innerText = `$${total.toFixed(2)}`;
         }
     </script>
 </body>
