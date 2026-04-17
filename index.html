@@ -1,10 +1,148 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>Food</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BiteDash | Order</title>
+    <style>
+        :root {
+            --primary: #ff4757;
+            --dark: #2f3542;
+            --light: #f1f2f6;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .food-card {
+            background: white;
+            width: 320px;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .price-tag {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--dark);
+            margin: 10px 0;
+        }
+
+        /* Controls Row */
+        .qty-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .btn-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+            background: white;
+            color: var(--primary);
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-circle:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        #qty-display {
+            font-size: 1.2rem;
+            font-weight: bold;
+            min-width: 30px;
+        }
+
+        /* Main Action Button */
+        .btn-order {
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.1s active;
+        }
+
+        .btn-order:active {
+            transform: scale(0.98);
+        }
+
+        .btn-order:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
 </head>
 <body>
-<h1>Food</h1>
-<p>Food food food food food</p>
-<button>Order</button>
+
+    <div class="food-card">
+        <span style="font-size: 3rem;">🍕</span>
+        <h1>Pepperoni Feast</h1>
+        <p>Double cheese, spicy pepperoni, and honey-glazed crust.</p>
+        
+        <div class="price-tag">$<span id="total-price">12.00</span></div>
+
+        <div class="qty-controls">
+            <button class="btn-circle" onclick="updateQty(-1)">−</button>
+            <span id="qty-display">1</span>
+            <button class="btn-circle" onclick="updateQty(1)">+</button>
+        </div>
+
+        <button class="btn-order" id="order-button" onclick="checkout()">
+            Place Order
+        </button>
+    </div>
+
+    <script>
+        // App Logic
+        let quantity = 1;
+        const UNIT_PRICE = 12.00;
+
+        const qtyDisplay = document.getElementById('qty-display');
+        const priceDisplay = document.getElementById('total-price');
+        const orderBtn = document.getElementById('order-button');
+
+        function updateQty(change) {
+            // Prevent quantity from going below 0
+            quantity = Math.max(0, quantity + change);
+            
+            // Update UI
+            qtyDisplay.innerText = quantity;
+            priceDisplay.innerText = (quantity * UNIT_PRICE).toFixed(2);
+
+            // Disable button if qty is 0
+            orderBtn.disabled = quantity === 0;
+        }
+
+        function checkout() {
+            alert(`🚀 Order Confirmed! Total: $${(quantity * UNIT_PRICE).toFixed(2)} \nYour pizza is on the way!`);
+            
+            // Reset after order
+            quantity = 1;
+            updateQty(0);
+        }
+    </script>
+
 </body>
 </html>
